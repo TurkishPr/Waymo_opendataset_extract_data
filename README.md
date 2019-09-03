@@ -9,3 +9,6 @@ the sameName_extract will be created with two txt files containing general spec 
 Then, in the same folder, all the corresponding images will be extracted and saved in jpg format.
 
 A work in progress atm.
+
+need python3, tensorflow, and pillow
+
