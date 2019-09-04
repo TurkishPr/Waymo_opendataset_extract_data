@@ -43,10 +43,6 @@ def image_show(data, name, layout, cmap=None):
 # | $$       /$$/\  $$   | $$   | $$  \ $$| $$  | $$| $$    $$   | $$           | $$  | $$\  $ | $$| $$  \ $$
 # | $$$$$$$$| $$  \ $$   | $$   | $$  | $$| $$  | $$|  $$$$$$/   | $$          /$$$$$$| $$ \/  | $$|  $$$$$$/
 # |________/|__/  |__/   |__/   |__/  |__/|__/  |__/ \______/    |__/         |______/|__/     |__/ \______/ 
-                                                                                                           
-
-# filepath = [r'C:\Users\Joseph Kim\Desktop\training_0000\segment-11119453952284076633_1369_940_1389_940_with_camera_labels.tfrecord']
-# FILENAME = filepath
 
 # create list of tfrecord filepaths
 folder_path = r"C:\Users\Joseph Kim\Desktop\training_0002" #dir containing the folder with tfrecords to convert/extract
@@ -80,32 +76,33 @@ for data in dataset: #records 명시된 파일들을 TFRecordDataset함수를 �
       
         for index, camera in enumerate(frame.context.camera_calibrations):
             f1.write("\n\nCamera: " + open_dataset.CameraName.Name.Name(camera.name))
-            f1.write("\nwidth: " + str(camera.width)+"\n")
-            f1.write("height: " + str(camera.height)+"\n\n")
+            f1.write("\nwidth: " + str(camera.width)+"")
+            f1.write("height: " + str(camera.height)+"\n")
         f1.close()
         
 
     #5개의 카메라중, 각각의 이미지에서 보이는 물체들의 박스 좌표와 TYPE, 그리고 각 물체의 id 프린트
-    if not os.path.exists(folder_path+"_extract\\"+str(frame.context.name)+"\\frame_data.txt"):
-        f = open(folder_path+"_extract\\"+str(frame.context.name) +"\\frame_data.txt", 'a+') #to write frame data to txt file
-        # print("\n\nLABLE INFO PER IMAGE")
-        for index, cam_labels in enumerate(frame.camera_labels):
-            f.write("Camera: " +open_dataset.CameraName.Name.Name(cam_labels.name)+"\n")
-            for index2, label in enumerate(cam_labels.labels):
-                f.write("type: ")
-                if label.type ==0:
-                  f.write("unknown\n")
-                if label.type ==1:
-                  f.write("vehicle\n")              
-                if label.type ==2:
-                  f.write("pedestrian\n")
-                if label.type ==3:
-                  f.write("sign\n")         
-                if label.type ==4:
-                  f.write("cyclist\n") 
-                f.write("id: " + label.id+"\n")
-                f.write(str(label.box)+"\n")
-        f.close()
+    f = open(folder_path+"_extract\\"+str(frame.context.name) +"\\frame_data.txt", 'a+') #to write frame data to txt file
+    # print("\n\nLABLE INFO PER IMAGE")
+    for index, cam_labels in enumerate(frame.camera_labels):
+        f.write("Camera: " +open_dataset.CameraName.Name.Name(cam_labels.name)+"\n")
+        for index2, label in enumerate(cam_labels.labels):
+            f.write("type: ")
+            if label.type ==0:
+              f.write("unknown\n")
+            if label.type ==1:
+              f.write("vehicle\n")              
+            if label.type ==2:
+              f.write("pedestrian\n")
+            if label.type ==3:
+              f.write("sign\n")         
+            if label.type ==4:
+              f.write("cyclist\n") 
+            f.write("id: " + label.id+"\n")
+            f.write(str(label.box)+"\n")
+    
+    f.close()
+        
 print("\n***finished fraame data and general spec info extraction***\n")
 
 for data in dataset:
