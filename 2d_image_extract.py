@@ -87,7 +87,7 @@ for data in dataset: #records 명시된 파일들을 TFRecordDataset함수를 �
 
     #5개의 카메라중, 각각의 이미지에서 보이는 물체들의 박스 좌표와 TYPE, 그리고 각 물체의 id 프린트
     if not os.path.exists(folder_path+"_extract\\"+str(frame.context.name)+"\\frame_data.txt"):
-        f = open(folder_path+"_extract\\"+str(frame.context.name) +"\\frame_data.txt", 'w') #to write frame data to txt file
+        f = open(folder_path+"_extract\\"+str(frame.context.name) +"\\frame_data.txt", 'a+') #to write frame data to txt file
         # print("\n\nLABLE INFO PER IMAGE")
         for index, cam_labels in enumerate(frame.camera_labels):
             f.write("Camera: " +open_dataset.CameraName.Name.Name(cam_labels.name)+"\n")
