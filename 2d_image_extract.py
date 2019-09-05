@@ -23,7 +23,6 @@ from waymo_open_dataset import dataset_pb2 as open_dataset
 from waymo_open_dataset import label_pb2 as open_dataset2
 
 tf.compat.v1.enable_eager_execution()
-count =0
 
 def image_show(data, name, layout, cmap=None):
   """Show an image."""
